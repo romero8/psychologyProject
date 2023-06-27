@@ -1,0 +1,52 @@
+.therapistInfoContainer {
+  background-color: #fff;
+  
+}
+
+
+
+.cardInformation {
+  margin: 0;
+  width: 100%;
+  min-height: 250px;
+  background-color: #505764;
+  color: #fff;
+  padding: 20px 10%;
+  border-radius: 0;
+}
+
+.cardPhotoBoxInformation {
+  width: 15%;
+  padding: 50px;
+}
+
+.imgInformation {
+  width: 150px;
+  height: 150px;
+}
+
+
+.therapistAbout {
+  font-size: 20px;
+}
+
+.cardActionInformation{
+    background: #fff;
+    padding: 40px;
+    width: 20%;
+    border-radius: 5px;
+}
+
+
+.aboutContainer {
+    
+  }
+
+  .about{
+    max-width: 50%;
+    background: #f9f9f9;
+    border: 1px solid #dedfe0;
+    margin: 40px;
+    padding: 50px;
+    border-radius: 5px;
+  }

@@ -1,0 +1,65 @@
+.SearchForSpecialistContainer {
+  background-color: #eaf5fa;
+  padding: 20px;
+  height: 260px;
+}
+
+.accordion {
+  display: flex;
+  flex-direction: column;
+}
+
+.SearchForSpecialistBody {
+  display: grid;
+  grid-template-columns: repeat(5, 200px);
+  gap: 45px;
+  margin: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.advencedFilter {
+  text-align: left;
+  padding-left: 10px;
+}
+
+.accordionBtn {
+  cursor: pointer;
+  height: 50px;
+  width: 150px;
+  font-weight: bold;
+  background-color: #eaf5fa;
+}
+
+.accordionBtn:hover {
+  color: rgb(55, 0, 255);
+}
+
+.accordionBtnNone {
+  display: none;
+}
+
+.inputBtn{
+  max-width: 80px;
+  padding: 10px;
+  margin-left: 50px;
+  background-color: #eaf5fa;
+  font-size: large;
+  font-weight: 500;
+  border-radius: 5px;
+  border: none;
+}
+
+.inputBtn:hover{
+  color: rgb(55, 0, 255);
+}
+
+@media(max-width:992px){
+  .SearchForSpecialistContainer{
+    height: 1050px;
+  }
+  .SearchForSpecialistBody{
+    display: flex;
+    flex-direction: column;
+  }
+}

@@ -3,7 +3,7 @@ const { isEmail } = require("validator");
 const bcrypt = require("bcrypt");
 const Schema = mongoose.Schema;
 
-const userSchema = new Schema(
+const clientSchema = new Schema(
   {
     email: {
       type: String,
@@ -25,61 +25,47 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    profession: {
-      type: String,
-      required: true,
-    },
-    experties: {
-      type: Array,
-      required: true,
-    },
+    
     address: {
       type: Object,
-      required: true,
     },
+
     phone: {
       type: Number,
     },
-    price: {
-      type: String,
-      required: true,
-    },
+   
     gender: {
       type: String,
-      required: true,
     },
-    language: {
-      type: Array,
-      required: true,
-    },
-    experience: {
-      type: String,
-      required: true,
-    },
+
     about: {
       type: String,
     },
+    favorites: {
+      type:Array
+    },
+    
   },
   { timestamps: true }
 );
 
-userSchema.pre("save", async function (next) {
+clientSchema.pre("save", async function (next) {
   const salt = await bcrypt.genSalt();
   this.password = await bcrypt.hash(this.password, salt);
   next();
 });
 
-userSchema.statics.logIn = async function (email, password) {
-  const user = await this.findOne({ email });
-  if (user) {
+clientSchema.statics.logIn = async function (email, password) {
+  const client = await this.findOne({ email });
+  if (client) {
     const auth = await bcrypt.compare(password, user.password);
     if (auth) {
-      return user;
+      return client;
     }
     throw Error("incorrect password");
   }
   throw Error("incorrect email");
 };
 
-const User = mongoose.model("user", userSchema);
-module.exports = User;
+const Client = mongoose.model("client", clientSchema);
+module.exports = Client;

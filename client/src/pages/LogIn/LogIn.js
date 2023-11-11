@@ -3,74 +3,77 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { Header } from "../../components/Header/Header";
 
 export function LogIn(props) {
-
   const setLoggedIn = props.setLoggedIn;
   const navigate = useNavigate();
+
+  let userLocalStorage = JSON.parse(window.localStorage.getItem("user"));
 
   const [inputData, setInputData] = useState({
     email: "",
     password: "",
   });
 
+  const [errors, setErrors] = useState({});
+  const [validated, setValidated] = useState(false);
+
   async function handle(e) {
     e.preventDefault();
-
+    setErrors({});
     try {
-      const res = await fetch("/logIn", {
+      const res = await fetch("https://mangisiteserver.onrender.com/logIn", {
         method: "POST",
         body: JSON.stringify(inputData),
         headers: { "Content-Type": "application/json" },
       });
       const data = await res.json();
-      console.log(data);
-      if (data.user) {
-        await window.localStorage.setItem("token", JSON.stringify(data.token))
-        await window.localStorage.setItem("user", JSON.stringify(data.user))
-        setLoggedIn(data.user)
-        navigate(`/`)
+      setErrors(data.errors);
+      if (data.therapist) {
+        await window.localStorage.setItem("token", JSON.stringify(data.token));
+        await window.localStorage.setItem("user", JSON.stringify(data.therapist));
+        setLoggedIn(data.therapist);
+        navigate(`/`);
+      }
+      if (data.client) {
+        await window.localStorage.setItem("token", JSON.stringify(data.token));
+        await window.localStorage.setItem("user", JSON.stringify(data.client));
+        setLoggedIn(data.client);
+        navigate(`/`);
       }
     } catch (err) {
       console.log(err);
     }
 
-    // console.log(inputData)
-    // fetch("/logIn", {
-    //   mode: "cors",
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type":"application/json"
-    //   },
-    //   body:JSON.stringify(inputData)
-    // })
-
-    // .then((response) => response.json())
-    //   .then((data) => {
-    //     console.log(data)
-    //     alert("Data Posted successfully!");
-
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
   }
- 
+
+  function handleEmail(e) {
+    setErrors({});
+    setInputData({ ...inputData, email: e.target.value });
+  }
+
   return (
     <div className="signInContainer">
-      <Form className="signInForm" onSubmit={handle}>
+      <Header userLoggedIn={userLocalStorage} specialties={"logIn Page"}/>
+      <Form className="signInForm" onSubmit={handle} validated={validated}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control
-            type="email"
+            required
+            isInvalid={errors.email}
             placeholder="Enter email"
-            onChange={(e) =>
-              setInputData({ ...inputData, email: e.target.value })
-            }
+            onChange={handleEmail}
           />
-          <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text>
+          {errors.email ? (
+            <Form.Control.Feedback type="invalid">
+              {errors.email.message}
+            </Form.Control.Feedback>
+          ) : (
+            <Form.Control.Feedback type="invalid">
+              Email is required
+            </Form.Control.Feedback>
+          )}
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -81,9 +84,20 @@ export function LogIn(props) {
             onChange={(e) =>
               setInputData({ ...inputData, password: e.target.value })
             }
+            required
+            isInvalid={errors.password}
           />
+          {errors.password ? (
+            <Form.Control.Feedback type="invalid">
+              {errors.password.message}
+            </Form.Control.Feedback>
+          ) : (
+            <Form.Control.Feedback type="invalid">
+              Email is required
+            </Form.Control.Feedback>
+          )}
         </Form.Group>
-        <Button variant="primary" type="submit">
+        <Button  type="submit" className="submitForm">
           Submit
         </Button>
       </Form>

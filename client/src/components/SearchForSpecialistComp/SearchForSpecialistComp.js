@@ -20,24 +20,22 @@ import Accordion from "react-bootstrap/Accordion";
 import { useAccordionButton } from "react-bootstrap/AccordionButton";
 import AccordionBody from "react-bootstrap/AccordionBody";
 import AccordionButton from "react-bootstrap/AccordionButton";
-import { therapistTypesData } from "../../helpers/data";
+// import { therapistTypesData } from "../../helpers/data";
 import { useNavigate } from "react-router-dom";
+import { experties } from "../../helpers/data";
 
 export function SearchForSpecialistComp({ eventKey }) {
   const [noneState, setNoneState] = useState(false);
 
-  const therapistTypes = therapistTypesData;
-
   const [nameSearch, setNameSearch] = useState("");
   const [professionSearch, setProfessionSearch] = useState("");
   const [citySearch, setCitySearch] = useState("");
-  const [rangeSearch, setRangeSearch] = useState([0,1000])
+  const [rangeSearch, setRangeSearch] = useState([0, 1000]);
   const [languageSearch, setLanguageSearch] = useState("");
   const [experienceSearch, setExperienceSearch] = useState("");
   const [genderSearch, setGenderSearch] = useState("");
   const [expertiesSearch, setExpertiesSearch] = useState("");
   const [lgbtqSearch, setLGBTQSearch] = useState("");
-  
 
   const navigate = useNavigate();
 
@@ -82,6 +80,14 @@ export function SearchForSpecialistComp({ eventKey }) {
       specialistUserSearchType: "typeName",
     },
     {
+      placeHolder: "Experties",
+      icon: <FontAwesomeIcon icon={faBook} />,
+      type: "text",
+      searchType: "select",
+      options: experties,
+      specialistUserSearchType: "experties",
+    },
+    {
       placeHolder: "City",
       icon: <FontAwesomeIcon icon={faTreeCity} />,
       type: "text",
@@ -90,16 +96,15 @@ export function SearchForSpecialistComp({ eventKey }) {
       specialistUserSearchType: "address.city",
     },
     {
-      placeHolder: "Price Range",
-      icon: <FontAwesomeIcon icon={faSackDollar} />,
-      type: "number",
-      searchType: "range",
-      inputSize: "long",
-      specialistUserSearchType: "price",
+      placeHolder: "Gender",
+      icon: <FontAwesomeIcon icon={faTransgender} />,
+      type: "text",
+      searchType: "select",
+      options: ["male", "female", "other"],
+      inputSize: "short",
+      specialistUserSearchType: "gender",
     },
-  ];
-
-  const specialistUserAdvencedSearch = [
+    
     {
       placeHolder: "Language",
       icon: <FontAwesomeIcon icon={faGlobe} />,
@@ -116,115 +121,58 @@ export function SearchForSpecialistComp({ eventKey }) {
       inputSize: "short",
       specialistUserSearchType: "experience",
     },
+    
     {
-      placeHolder: "Experties",
-      icon: <FontAwesomeIcon icon={faBook} />,
-      type: "text",
-      searchType: "select",
-      options: ["blablabla", "blablabla", "blablabla", "blablabla"],
-      specialistUserSearchType: "experties",
-    },
-
-    {
-      placeHolder: "Gender",
-      icon: <FontAwesomeIcon icon={faTransgender} />,
-      type: "text",
-      searchType: "select",
-      options: ["male", "female", "other"],
-      inputSize: "short",
-      specialistUserSearchType: "gender",
-    },
-
-    {
-      placeHolder: "LGBTQ friendly",
-      icon: <FontAwesomeIcon icon={faPersonHalfDress} />,
+      placeHolder: "Price Range",
+      icon: <FontAwesomeIcon icon={faSackDollar} />,
       type: "number",
-      searchType: "checkBox",
-      options: ["yes", "no"],
-      specialistUserSearchType: "LGBTQ",
+      searchType: "range",
+      inputSize: "long",
+      specialistUserSearchType: "price",
     },
+   
   ];
-
-  function none() {
-    if (noneState) {
-      return "None";
-    } else {
-      return "";
-    }
-  }
 
   return (
     <div className="SearchForSpecialistContainer">
-      <Accordion
-        as="form"
-        className="accordion"
-        onSubmit={(e) => searchForTherapist(e)}
-      >
-        <AccordionBody as="div" className="SearchForSpecialistBody">
-          {specialistUserAdvencedSearch.map((user) => {
-            return (
-              <SearchInput
-                placeHolder={user.placeHolder}
-                icon={user.icon}
-                type={user.type}
-                searchType={user.searchType}
-                options={user.options}
-                inputSize={user.inputSize}
-                specialistUserSearchType={user.specialistUserSearchType}
-                setSearch={{
-                  setNameSearch,
-                  setProfessionSearch,
-                  setCitySearch,
-                  setRangeSearch,
-                  setLanguageSearch,
-                  setExperienceSearch,
-                  setGenderSearch,
-                  setExpertiesSearch,
-                  setLGBTQSearch,
-                }}
-                value={{ genderSearch, expertiesSearch ,rangeSearch}}
-              />
-            );
-          })}
-        </AccordionBody>
-
-        <div className="SearchForSpecialistBody">
-          {specialistUserSearch.map((user) => {
-            return (
-              <SearchInput
-                placeHolder={user.placeHolder}
-                icon={user.icon}
-                type={user.type}
-                searchType={user.searchType}
-                options={user.options}
-                inputSize={user.inputSize}
-                specialistUserSearchType={user.specialistUserSearchType}
-                setSearch={{
-                  setNameSearch,
-                  setProfessionSearch,
-                  setCitySearch,
-                  setRangeSearch,
-                  setLanguageSearch,
-                  setExperienceSearch,
-                  setGenderSearch,
-                  setExpertiesSearch,
-                  setLGBTQSearch,
-                }}
-                value={{ genderSearch, expertiesSearch,rangeSearch }}
-              />
-            );
-          })}
-          {/* <MainBtn value="Search" color="outline-secondary"/> */}
-          <button className="inputBtn">Search</button>
-          <AccordionButton
-            as="div"
-            onClick={() => setNoneState(true)}
-            className={`accordionBtn${none()}`}
-          >
-            Advenced Filter
-          </AccordionButton>
+      <div className="SearchForSpecialistBody">
+      <div className="SearchForSpecialistTitleBox">
+        <h3 className="SearchForSpecialistTitle">
+          What type of therapy are you looking for?
+        </h3>
+      </div>
+        {specialistUserSearch.map((user) => {
+          return (
+            <SearchInput
+              placeHolder={user.placeHolder}
+              icon={user.icon}
+              type={user.type}
+              searchType={user.searchType}
+              options={user.options}
+              inputSize={user.inputSize}
+              specialistUserSearchType={user.specialistUserSearchType}
+              setSearch={{
+                setNameSearch,
+                setProfessionSearch,
+                setCitySearch,
+                setRangeSearch,
+                setLanguageSearch,
+                setExperienceSearch,
+                setGenderSearch,
+                setExpertiesSearch,
+                setLGBTQSearch,
+              }}
+              value={{ genderSearch, expertiesSearch, rangeSearch }}
+            />
+          );
+        })}
+        {/* <MainBtn value="Search" color="outline-secondary"/> */}
+        <div className="inputBtnBox">
+          <button className="inputBtn" onClick={searchForTherapist}>
+            Search
+          </button>
         </div>
-      </Accordion>
+      </div>
     </div>
   );
 }

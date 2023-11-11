@@ -1,5 +1,17 @@
+:root{
+  --mainBackGround:#49977E;
+  --secondBackGround:#FCF8EF;
+  --spanColor:#0A3829;
+  --specialColor:#FDBF24;
+  --logoColor:#BC0E85;
+  --specialWhite:#f7f0e6;
+}
+
 .App {
   text-align: center;
+  font-family: 'Nunito Sans', sans-serif;
+  color:var(--spanColor);
+ background-image: url('./icons/backGround50.png');
 }
 
 .App-logo {

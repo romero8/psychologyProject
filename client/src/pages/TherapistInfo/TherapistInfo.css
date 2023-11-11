@@ -1,28 +1,79 @@
 .therapistInfoContainer {
+  background-color: var(--specialWhite);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--secondBackGround);
+  background-image: url('../../icons/backGround52.png');
+  min-height: 655px;
+}
+
+.userInfoAbout{
+  font-size: 20px;
+}
+
+.cardInformation {
+  background-color: var(--secondBackGround);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 52%;
+  margin: 100px ;
   background-color: #fff;
+  padding: 10px;
+  border-radius: 17px;
+  box-shadow:
+  /* 0 0 0 2px var(--spanColor), */
+  0.3em 0.3em 1em var(--spanColor);
+}
+
+.specalistNameInfo {
+  color: var(--mainBackGround);
+  text-decoration: none;
+}
+
+/* .cardPhotoBoxInformation {
+  width: 15%;
+  padding: 50px;
+} */
+
+.callMeBtn{
+  background-color: #fff;
+  color: var(--logoColor);
+  height: 50px;
+  font-weight: bold;
+  border-radius: 100px;
+  border-color: var(--logoColor);
+}
+
+.cardPhotoBox{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 90%;
   
 }
 
-
-
-.cardInformation {
-  margin: 0;
-  width: 100%;
-  min-height: 250px;
-  background-color: #505764;
-  color: #fff;
-  padding: 20px 10%;
-  border-radius: 0;
+.specalistProfession{
+  display: flex;
 }
 
-.cardPhotoBoxInformation {
-  width: 15%;
-  padding: 50px;
+.specalistExperties{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
-.imgInformation {
-  width: 150px;
-  height: 150px;
+.experty{
+  background:var(--secondBackGround);
+  padding: 3px;
+  border-radius: 5px;
+}
+
+.thrapistInfoImg{
+  height: 250px;
+  width: 250px;
 }
 
 
@@ -31,10 +82,33 @@
 }
 
 .cardActionInformation{
-    background: #fff;
-    padding: 40px;
-    width: 20%;
-    border-radius: 5px;
+    width: 10%;
+    margin-right: 30px;
+}
+
+.specalistAvailabilityContainer{
+  display: flex;
+  gap: 25px;
+}
+
+
+.aboutTherapistInfoContainer{
+  border-top-right-radius: 50%;
+  border-top-left-radius:  50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  padding: 50px;
+  width: 100%;
+  flex-direction: column;
+  box-shadow:
+  /* 0 0 0 2px var(--spanColor), */
+  0.3em 0.3em 1em var(--spanColor);
+}
+
+.aboutTherapistInfo{
+  width: 60%;
 }
 
 
@@ -43,10 +117,31 @@
   }
 
   .about{
+    
     max-width: 50%;
     background: #f9f9f9;
     border: 1px solid #dedfe0;
     margin: 40px;
     padding: 50px;
     border-radius: 5px;
+  }
+
+  @media (max-width: 1350px){
+    .cardInformation{
+      flex-direction: column;
+      align-items: start;
+    }
+    .cardPhotoBox{
+      flex-direction: column;
+    }
+    .cardActions{
+      width: 40%;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .cardInformation {
+      flex-direction: column;
+      width: 80%;
+    }
   }

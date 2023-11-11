@@ -1,10 +1,93 @@
-.signInContainer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
+.signInContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  min-height: 800px;
+  background-color: var(--secondBackGround);
+  background-image: url('../../icons/backGround52.png');
+}
+
+.signUpContainer {
+  min-height: 800px;
+  display: flex;
+  justify-content: center;
+}
+
+.signUpBox {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+  margin-top: 50px;
+}
+
+.submitForm{
+  background-color: #9c27b0;
+  border: none;
+}
+
+.submitForm:hover{
+  background-color: var(--logoColor);
 }
 
 .signInForm{
+  margin-top: 70px;
+  background-color: var(--secondBackGround);
+  padding: 40px;
+  box-shadow:
+  /* 0 0 0 2px var(--spanColor), */
+  0.3em 0.3em 1em var(--spanColor);
+  border-radius: 20px;
+}
 
+.signUpOption {
+   
+}
+
+input[type="number"]::-webkit-inner-spin-button{
+  display: none;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.checkBoxContainer {
+  justify-content: start;
+}
+
+.clientRegistration{
+background-color: var(--mainBackGround);
+border: none;
+font-size: 60px;
+}
+
+.clientRegistration:hover{
+  background-color: var(--logoColor);
+}
+
+.thrapistRegistration{
+  background-color: var(--specialColor);
+  border: none;
+  font-size: 60px;
+}
+
+.thrapistRegistration:hover{
+  background-color: var(--logoColor);
+}
+
+.errorMessage {
+  margin-top: 0.25rem;
+  font-size: 0.875em;
+  color: #dc3545;
+}
+
+@media (max-width: 1065px){
+  
+  .flex{
+    flex-direction: column;
+  }
 }
